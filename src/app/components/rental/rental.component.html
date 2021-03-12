@@ -1,0 +1,36 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<table *ngIf="dataLoaded != false" 
+    class="table table-hover table-sm"
+    style="width: 1130px;">
+  <thead>
+    <tr><th colspan="6" style="text-align: center; background-color: rgba(110, 226, 226, 0.205);">KIRALANAN ARACLAR</th></tr>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Musteri</th>
+      <th scope="col">Arac</th>
+      <th scope="col">Kiralama Tarihi</th>
+      <th scope="col">Teslim Tarihi</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rental of rentals">
+      <th scope="row">{{ rental.id }}</th>
+      <td>{{ rental.customerFirstName }} {{ rental.customerLastName }}</td>
+      <td>{{ rental.carName }}</td>
+      <td>{{ rental.rentDate | date:'shortDate' }}</td>
+      <td>{{ rental.returnDate | date:'shortDate' }}</td>
+      <td>
+        <button type="button" class="btn btn-warning" style="margin-right: 5px;">Duzenle</button>
+        <button type="button" class="btn btn-danger">Sil</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

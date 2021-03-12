@@ -1,0 +1,32 @@
+<div class="row">
+  <div
+    *ngFor="let car of cars"
+    class="col-4"
+    style="margin-bottom: 5px; margin-top: 5px"
+  >
+    <div class="card">
+      <img
+        src="assets/img/{{ car.imagePath }}"
+        class="card-img-top"
+        alt="{{ car.carName }}{{ car.imagePath }}"
+        width="100%"
+        height="175"
+      />
+      <div class="card-body">
+        <strong>
+          <h5 class="card-title">{{ car.carName }}</h5>
+        </strong>
+        <p class="card-text">
+          {{ car.modelYear }}
+          <strong> {{ car.brandName }} </strong>
+          {{ car.colorName }}
+        </p>
+        <p class="card-text">
+          Fiyat: <strong> {{ car.dailyPrice }}TL </strong>
+        </p>
+        <p class="card-text">Aciklama: {{ car.description }}</p>
+        <a href="#" class="btn btn-primary">KIRALA</a>
+      </div>
+    </div>
+  </div>
+</div>

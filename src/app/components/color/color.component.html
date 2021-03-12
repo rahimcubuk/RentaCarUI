@@ -1,0 +1,19 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div>
+  <ul class="list-group" *ngIf="dataLoaded != false">
+    <li class="list-group-item">RENKLER</li>
+    <li
+      *ngFor="let color of colors"
+      class="list-group-item list-group-item-info"
+      style="width: 150px;"
+    >
+      {{ color.colorName }}
+    </li>
+  </ul>
+</div>
