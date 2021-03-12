@@ -13,7 +13,6 @@ Kodlama.io kamp gelisim projesidir. Gelistiren Rahim Cubuk.
 
 ### Geliştirme Ortam Bilgileri
 * Frontend gelistirme asamasinda "Visual Studio Code 1.54.1" kullanilmistir.
-* 
 * BackEnd icin [tiklayiniz](https://github.com/rahimcubuk/RentaCarProject).
 * BackEnd geliştirme aşamasında "Microsoft Blend for Visual Studio Community 2019 Version 16.8.5" kullanılmıştır.
 * Veritabanı olarak MsSQL kullanılmış ve veritabanı ile iletişim "Microsoft.EntityFrameworkCore.SqlServer v3.1.11" ile sağlanmıştır.
