@@ -1,0 +1,9 @@
+#car-container {
+    border: 1px solid rgba(0, 0, 0, 0.198);
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 3px;
+  }
+.car-filter{
+    padding: 5px
+}

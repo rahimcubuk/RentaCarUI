@@ -6,11 +6,13 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<table *ngIf="dataLoaded != false" 
-    class="table table-hover table-sm"
-    style="width: 1130px;">
+<table
+  *ngIf="dataLoaded != false"
+  class="table table-hover table-sm"
+  style="width: 1000px"
+>
   <thead>
-    <tr><th colspan="5" style="text-align: center; background-color: rgba(110, 226, 226, 0.205);">MUSTERI LISTESI</th></tr>
+    <tr><th colspan="6" style="text-align: center; background-color: rgba(110, 226, 226, 0.205);">MUSTERILER</th></tr>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Musteri</th>
@@ -26,7 +28,9 @@
       <td>{{ customer.companyName }}</td>
       <td>{{ customer.eMail }}</td>
       <td>
-        <button type="button" class="btn btn-warning" style="margin-right: 5px;">Duzenle</button>
+        <button type="button" class="btn btn-warning" style="margin-right: 5px">
+          Duzenle
+        </button>
         <button type="button" class="btn btn-danger">Sil</button>
       </td>
     </tr>
