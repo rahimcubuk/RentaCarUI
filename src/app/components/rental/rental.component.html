@@ -5,8 +5,11 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-
-<table *ngIf="dataLoaded != false" 
+<button class="btn btn-info dropdown-toggle" type="button" id="rentalList" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;" >
+  <strong> KIRALAMA LISTESI </strong>
+</button>
+<div class="dropdown-menu" aria-labelledby="rentalList" style="padding:1%">
+  <table *ngIf="dataLoaded != false" 
     class="table table-hover table-sm"
     style="width: 1000px;">
   <thead>
@@ -34,3 +37,5 @@
     </tr>
   </tbody>
 </table>
+</div>
+

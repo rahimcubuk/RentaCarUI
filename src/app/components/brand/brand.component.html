@@ -5,15 +5,40 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<div>
+<!-- <div>
   <ul class="list-group" *ngIf="dataLoaded != false">
     <li class="list-group-item">MODELLER</li>
     <li
       *ngFor="let brand of brands"
       class="list-group-item list-group-item-info"
-      style="width: 150px;"
     >
       {{ brand.brandName }}
     </li>
   </ul>
+</div> -->
+<div class="list-group" *ngIf="dataLoaded != false">
+  <button
+    routerLink="/car"
+    (click)="clearFilter()"
+    type="button"
+    aria-current="true"
+    class="btn btn-success"
+    style="margin: 3%;"
+  >
+    TEMIZLE
+  </button>
+
+  <div class="list-group-item">
+    <strong> MODELLER </strong>
+  </div>
+  <button
+    *ngFor="let brand of brands"
+    (click)="setCurrentBrand(brand)"
+    routerLink="/car/listbybrand/{{ brand.brandId }}"
+    type="button"
+    [class]="getCurrentBrandClass(brand)"
+    aria-current="true"
+  >
+    {{ brand.brandName }}
+  </button>
 </div>

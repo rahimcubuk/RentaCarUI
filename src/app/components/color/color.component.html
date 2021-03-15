@@ -5,15 +5,30 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<div>
-  <ul class="list-group" *ngIf="dataLoaded != false">
-    <li class="list-group-item">RENKLER</li>
-    <li
-      *ngFor="let color of colors"
-      class="list-group-item list-group-item-info"
-      style="width: 150px;"
-    >
-      {{ color.colorName }}
-    </li>
-  </ul>
+
+<div class="list-group" *ngIf="dataLoaded != false">
+  <button
+    routerLink="/car"
+    (click)="clearFilter()"
+    type="button"
+    aria-current="true"
+    class="btn btn-success"
+    style="margin: 3%;"
+  >
+    TEMIZLE
+  </button>
+
+  <div class="list-group-item">
+    <strong> RENKLER </strong>
+  </div>
+  <button
+    *ngFor="let color of colors"
+    (click)="setCurrentColor(color)"
+    routerLink="/car/listbycolor/{{ color.colorId }}"
+    type="button"
+    [class]="getCurrentColorClass(color)"
+    aria-current="true"
+  >
+    {{ color.colorName }}
+  </button>
 </div>

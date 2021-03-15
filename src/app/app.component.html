@@ -3,25 +3,15 @@
 
   <div class="row" id="droppers" style="margin:30px 0px 30px 0px;" >
     <div class="col-6 dropdown" style="text-align: center;">
-      <button class="btn btn-info dropdown-toggle" type="button" id="customerList" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;" >
-        <strong> MUSTERI LISTESI </strong>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="customerList" style="padding: 1%;">
-        <app-customer></app-customer>
-      </div>
+      <app-customer></app-customer>
     </div>
     <div class="col-6 dropdown" style="text-align: center;">
-      <button class="btn btn-info dropdown-toggle" type="button" id="rentalList" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;" >
-        <strong> KIRALAMA LISTESI </strong>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="rentalList" style="padding:1%">
-        <app-rental></app-rental>
-      </div>
+      <app-rental></app-rental>
     </div>
   </div>
 
   <div
-    class="row" id="car-container">
+    class="row mainbar">
     <div class="col-2" style="text-align: center">
       <div class="row car-filter" id="colors">
         <app-color></app-color>
@@ -31,8 +21,10 @@
       </div>
     </div>
     <div class="col-10">
-      <app-car></app-car>
+      <!-- <app-car></app-car> -->
+      <router-outlet></router-outlet>
+      <!-- <app-car-details></app-car-details> -->
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>
+

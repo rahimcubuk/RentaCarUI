@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="card">
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="border: 1px solid black;" >
+			<div class="carousel-inner">
+				<div *ngFor="let image of images; first as firstImage" class="carousel-item" [ngClass]="{ active: firstImage }"
+                style="background-color: rgba(82, 68, 92, 0.233); padding: 1% 0 1% 28%;" >
+					<img src="assets/img/{{ image.imagePath }}" alt="{{car.carName}}" width="480" height="360" >
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+		<table *ngIf="car" class="card-body table table-striped mt-2">
+            <tbody>
+              <tr>
+                <th scope="row">Marka</th>
+                <td>{{ car.brandName }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Model</th>
+                <td>{{ car.carName }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Renk</th>
+                <td>{{ car.colorName }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Fiyat</th>
+                <td>
+                  {{
+                    car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"
+                  }}/Gunluk
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Model Yılı</th>
+                <td> {{car.modelYear}} </td>
+              </tr>
+              <tr>
+                <th scope="row">Aciklama</th>
+                <td>{{ car.description }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
