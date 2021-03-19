@@ -15,46 +15,72 @@
           <tr>
             <td>
               <div class="btn-group">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button
+                  type="button"
+                  class="btn btn-danger dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Renkler
                 </button>
                 <ul class="dropdown-menu">
                   <li *ngFor="let color of colors">
-                    <a class="dropdown-item" href="#">{{color.colorName}}</a>
+                    <a
+                      class="dropdown-item"
+                      routerLink="/car/listbycolor/{{ color.colorId }}"
+                    >
+                      {{ color.colorName }}
+                    </a>
                   </li>
                 </ul>
               </div>
             </td>
             <td>
               <div class="btn-group">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button
+                  type="button"
+                  class="btn btn-danger dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Modeller
                 </button>
                 <ul class="dropdown-menu">
                   <li *ngFor="let brand of brands">
-                    <a class="dropdown-item" href="#">{{brand.brandName}}</a>
+                    <a class="dropdown-item" routerLink="/car/listbybrand/{{ brand.brandId }}">{{ brand.brandName }}</a>
                   </li>
                 </ul>
               </div>
             </td>
             <td>
-              <a type="button" href="#droppers" class="btn btn-secondary">Musteriler</a>
+              <a type="button" href="#droppers" class="btn btn-secondary"
+                >Musteriler</a
+              >
             </td>
             <td>
-              <a type="button" href="#droppers" class="btn btn-secondary">Kiralama</a>
+              <a type="button" href="#droppers" class="btn btn-secondary"
+                >Kiralama</a
+              >
             </td>
             <td>
-              <a type="button" href="#car-container" class="btn btn-secondary">Araclar</a>
+              <a type="button" href="#car-container" class="btn btn-secondary"
+                >Araclar</a
+              >
             </td>
           </tr>
         </table>
       </div>
       <div class="col-4">
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
           <button class="btn btn-outline-success" type="submit">Ara</button>
         </form>
       </div>
     </div>
   </div>
-</div>  
+</div>

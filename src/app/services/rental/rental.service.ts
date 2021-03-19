@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DataResponseModel } from 'src/app/models/dataModel';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { Rental } from 'src/app/models/rental/rental';
 
@@ -8,10 +9,16 @@ import { Rental } from 'src/app/models/rental/rental';
   providedIn: 'root',
 })
 export class RentalService {
-  rentalListUrl = 'https://localhost:44309/api/rent/list';
+  apiUrl = 'https://localhost:44309/api/rent';
   constructor(private httpClient: HttpClient) {}
 
   getRentals(): Observable<ListResponseModel<Rental>> {
-    return this.httpClient.get<ListResponseModel<Rental>>(this.rentalListUrl);
+    let newUrl = this.apiUrl + '/list';
+    return this.httpClient.get<ListResponseModel<Rental>>(newUrl);
+  }
+
+  getRentalByCar(car: number): Observable<DataResponseModel<Rental>> {
+    let newUrl = this.apiUrl + '/list/' + car;
+    return this.httpClient.get<DataResponseModel<Rental>>(newUrl);
   }
 }

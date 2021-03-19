@@ -5,17 +5,7 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<!-- <div>
-  <ul class="list-group" *ngIf="dataLoaded != false">
-    <li class="list-group-item">MODELLER</li>
-    <li
-      *ngFor="let brand of brands"
-      class="list-group-item list-group-item-info"
-    >
-      {{ brand.brandName }}
-    </li>
-  </ul>
-</div> -->
+<label *ngIf="!clearFilterFlag" style="background-color: aqua; width: 100%;">{{currentBrand.brandName}} model secildi.</label>
 <div class="list-group" *ngIf="dataLoaded != false">
   <button
     routerLink="/car"
@@ -29,10 +19,12 @@
   </button>
 
   <div class="list-group-item">
-    <strong> MODELLER </strong>
+    <div class="mb-0">
+      <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="MODELLER">
+    </div>
   </div>
   <button
-    *ngFor="let brand of brands"
+    *ngFor="let brand of brands | brandFilter:filterText"
     (click)="setCurrentBrand(brand)"
     routerLink="/car/listbybrand/{{ brand.brandId }}"
     type="button"

@@ -1,20 +1,23 @@
 <div class="row">
+  <div class="mb-0">
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Araclar">
+  </div>
   <div
-    *ngFor="let car of carDetails"
+    *ngFor="let car of carDetails | carFilter:filterText"
     class="col-4"
     style="margin-bottom: 5px; margin-top: 5px"
   >
     <div class="card">
-      <img
+      <!-- <img
         src = "assets/img/{{ car.imagePath }}"
         class="card-img-top"
         alt="logo"
         width="100%"
         height="175"
-      />
+      /> -->
       <div class="card-body">
         <strong>
-          <h5 class="card-title">{{ car.carName }}</h5>
+          <h5 class="card-title">{{ car.carName | uppercase  }}</h5>
         </strong>
         <p class="card-text">
           {{ car.modelYear }}
@@ -22,7 +25,7 @@
           {{ car.colorName }}
         </p>
         <p class="card-text">
-          Fiyat: <strong> {{ car.dailyPrice }}TL </strong>
+          Fiyat: <strong> {{ car.dailyPrice | currency:"TRY":"₺" }} </strong>
         </p>
         <p class="card-text">Aciklama: {{ car.description }}</p>
         <div style="width: 100%;" class="btn-group" role="group" aria-label="Basic mixed styles example">

@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car/car';
 import { CarDetails } from 'src/app/models/car/carDetails';
-import { CarImage } from 'src/app/models/car/carImage';
 import { CarService } from 'src/app/services/car/car.service';
-import { CarImageService } from 'src/app/services/carImage/car-image.service';
 
 @Component({
   selector: 'app-car',
@@ -15,10 +13,10 @@ export class CarComponent implements OnInit {
   cars: Car[] = [];
   carDetails: CarDetails[] = [];
   dataLoaded = false;
-  data: CarDetails[] = [];
+  filterText = '';
+
   constructor(
     private carService: CarService,
-    private imageService: CarImageService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -36,16 +34,6 @@ export class CarComponent implements OnInit {
     this.getAllDetail();
   }
 
-  // getCarImage(data:CarDetails[]) {
-  //   this.data.forEach((element) => {
-  //     console.log("dasdas");
-  //     this.imageService.getImagesByCar(element.carId).subscribe((response) => {
-  //       element.imagePath = response.data[0].imagePath;
-  //       console.log(element.imagePath);console.log("dasdas");
-  //     });
-  //   });
-  // }
-
   getAll() {
     this.carService.getAll().subscribe((response) => {
       this.cars = response.data;
@@ -58,7 +46,6 @@ export class CarComponent implements OnInit {
       this.carDetails = response.data;
       this.dataLoaded = true;
     });
-    // this.getCarImage(this.carDetails);
   }
 
   getCarByColor(color: number) {

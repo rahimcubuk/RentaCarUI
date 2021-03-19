@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,8 +11,11 @@ import { CarComponent } from './components/car/car.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { NavigatorComponent } from './components/navigator/navigator.component';
-import { HttpClientModule } from '@angular/common/http';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
+import { CarFilterPipe } from './pipes/filterPipes/carPipes/car-filter.pipe';
+import { CarImagesPipe } from './pipes/imagePipe/car-images.pipe';
+import { ColorFilterPipe } from './pipes/filterPipes/colorPipes/color-filter.pipe';
+import { BrandFilterPipe } from './pipes/filterPipes/brandPipes/brand-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -21,12 +26,17 @@ import { CarDetailsComponent } from './components/car-details/car-details.compon
     CustomerComponent,
     RentalComponent,
     NavigatorComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    CarFilterPipe,
+    CarImagesPipe,
+    ColorFilterPipe,
+    BrandFilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

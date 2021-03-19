@@ -6,6 +6,8 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
+<label *ngIf="!clearFilterFlag" style="background-color: aqua; width: 100%;">{{currentColor.colorName}} renk secildi.</label>
+
 <div class="list-group" *ngIf="dataLoaded != false">
   <button
     routerLink="/car"
@@ -19,10 +21,12 @@
   </button>
 
   <div class="list-group-item">
-    <strong> RENKLER </strong>
+    <div class="mb-0">
+      <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="RENKLER">
+    </div>
   </div>
   <button
-    *ngFor="let color of colors"
+    *ngFor="let color of colors | colorFilter:filterText"
     (click)="setCurrentColor(color)"
     routerLink="/car/listbycolor/{{ color.colorId }}"
     type="button"

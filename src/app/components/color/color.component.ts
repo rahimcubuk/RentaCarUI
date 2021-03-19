@@ -10,6 +10,8 @@ import { ColorService } from 'src/app/services/color/color.service';
 export class ColorComponent implements OnInit {
   colors: Color[] = [];
   currentColor: Color;
+  clearFilterFlag = true;
+  filterText = '';
   dataLoaded = false;
   constructor(private colorService: ColorService) {}
 
@@ -23,19 +25,21 @@ export class ColorComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
-  
+
   setCurrentColor(color: Color) {
+    this.clearFilterFlag = false;
     this.currentColor = color;
   }
 
-  clearFilter(){
+  clearFilter() {
+    this.clearFilterFlag = true;
     this.getColors();
   }
 
-  getCurrentColorClass(color:Color){
-    if(color==this.currentColor){
-      return "list-group-item list-group-item-action active"
+  getCurrentColorClass(color: Color) {
+    if (color == this.currentColor) {
+      return 'list-group-item list-group-item-action active';
     }
-    return "list-group-item list-group-item-info"
+    return 'list-group-item list-group-item-info';
   }
 }

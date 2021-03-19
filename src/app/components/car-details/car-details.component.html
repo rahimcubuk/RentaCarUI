@@ -20,31 +20,39 @@
             <tbody>
               <tr>
                 <th scope="row">Marka</th>
-                <td>{{ car.brandName }}</td>
+                <td>: {{ car.brandName }}</td>
               </tr>
               <tr>
                 <th scope="row">Model</th>
-                <td>{{ car.carName }}</td>
+                <td>: {{ car.carName }}</td>
               </tr>
               <tr>
                 <th scope="row">Renk</th>
-                <td>{{ car.colorName }}</td>
+                <td>: {{ car.colorName }}</td>
               </tr>
               <tr>
                 <th scope="row">Fiyat</th>
                 <td>
-                  {{
+                  : {{
                     car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"
                   }}/Gunluk
                 </td>
               </tr>
               <tr>
                 <th scope="row">Model Yılı</th>
-                <td> {{car.modelYear}} </td>
+                <td>: {{car.modelYear}} </td>
               </tr>
               <tr>
                 <th scope="row">Aciklama</th>
-                <td>{{ car.description }}</td>
+                <td>: {{ car.description }}</td>
+              </tr>
+              <tr *ngIf="rentFlag" >
+                <th colspan="2" scope="row" style="text-align: center;">ARAC KIRALANMIS.</th>
+              </tr>
+              <tr *ngIf="!rentFlag" >
+                <td colspan="2" scope="row" style="text-align: center;">
+                  <button type="button" class="btn btn-success" style="width: 150px;">KIRALA</button>
+                </td>
               </tr>
             </tbody>
           </table>
