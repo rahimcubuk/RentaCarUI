@@ -20,11 +20,11 @@
 
   <div class="list-group-item">
     <div class="mb-0">
-      <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="MODELLER">
+      <input type="text" [(ngModel)]="brandText" class="form-control" id="brandText" placeholder="MODELLER">
     </div>
   </div>
   <button
-    *ngFor="let brand of brands | brandFilter:filterText"
+    *ngFor="let brand of brands | brandFilter:brandText"
     (click)="setCurrentBrand(brand)"
     routerLink="/car/listbybrand/{{ brand.brandId }}"
     type="button"

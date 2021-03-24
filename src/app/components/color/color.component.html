@@ -22,11 +22,11 @@
 
   <div class="list-group-item">
     <div class="mb-0">
-      <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="RENKLER">
+      <input type="text" [(ngModel)]="colorText" class="form-control" id="colorText" placeholder="RENKLER">
     </div>
   </div>
   <button
-    *ngFor="let color of colors | colorFilter:filterText"
+    *ngFor="let color of colors | colorFilter:colorText"
     (click)="setCurrentColor(color)"
     routerLink="/car/listbycolor/{{ color.colorId }}"
     type="button"

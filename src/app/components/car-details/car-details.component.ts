@@ -1,12 +1,18 @@
-import { isNull } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CarDetails } from 'src/app/models/car/carDetails';
 import { CarImage } from 'src/app/models/car/carImage';
+import { Rental } from 'src/app/models/rental/rental';
 import { CarService } from 'src/app/services/car/car.service';
 import { CarImageService } from 'src/app/services/carImage/car-image.service';
 import { RentalService } from 'src/app/services/rental/rental.service';
-
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 @Component({
   selector: 'app-car-details',
   templateUrl: './car-details.component.html',
@@ -14,16 +20,17 @@ import { RentalService } from 'src/app/services/rental/rental.service';
 })
 export class CarDetailsComponent implements OnInit {
   car: CarDetails;
+  rental: Rental;
   images: CarImage[] = [];
   rentFlag = false;
-  deneme: string = '';
   dataLoaded = false;
 
   constructor(
     private activedRoute: ActivatedRoute,
     private carService: CarService,
     private imageService: CarImageService,
-    private rentalService: RentalService
+    private rentalService: RentalService,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
