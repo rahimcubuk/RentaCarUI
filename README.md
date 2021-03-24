@@ -1,6 +1,11 @@
 # RentaCarProject Kullanici Arayuzu
 Kodlama.io kamp gelisim projesidir. Gelistiren Rahim Cubuk.
 
+### Kodlama.io 18. gun odev gereksinimleri
+* Brand listesinde herhangi bir marka seçildiğinde, o markaya ait arabaları listeleyiniz.
+* Color listesinde herhangi bir renk seçildiğinde, o renge ait arabaları listeleyiniz.
+* Car listesinde bir arabaya tıklandığında o arabaya ait detay sayfası oluşturunuz. Bu sayfada bu araca ait resimleri de gösteriniz.
+
 ### Kodlama.io 17. gun odev gereksinimleri
 * Angular projesi oluşturunuz
 * Bootstrap entegrasyonu yapınız
