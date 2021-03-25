@@ -1,6 +1,16 @@
 # RentaCarProject Kullanici Arayuzu
 Kodlama.io kamp gelisim projesidir. Gelistiren Rahim Cubuk.
 
+### Kodlama.io 19. gun odev gereksinimleri
+* Car, Brand, Color için pipe ile arama desteği ekleyiniz.
+* Car sayfasına 2 adet açılır kutu ekleyiniz. Html-Select Option. Bu açılır kutularda sırasıyla Marka ve Renk listeleyiniz.
+* Açılır kutuların yanına "Filtrele" butonu ekleyiniz.
+* Filtrele butonuna tıklandığında apiden ilgili filtreye uygun arabaları listeleyiniz.
+* Araba detay sayfasında "Kirala" butonu ekleyiniz. Bu aracı kiralayabilecek sistemi yazınız. Araba hali hazırda başkası tarafından seçilen tarih aralığında kiralanmışsa, kiralama işlemi yapmayınız.
+* Kiralama işleminde tarihler seçildikten sonra, yeni bir sayfada kredi kartıyla ödeme desteği getiriniz.
+* Ödeme işlemi için api'de sahte bir banka servisi yazınız.
+* Tüm işlemler için Toastr desteği ekleyiniz.
+
 ### Kodlama.io 18. gun odev gereksinimleri
 * Brand listesinde herhangi bir marka seçildiğinde, o markaya ait arabaları listeleyiniz.
 * Color listesinde herhangi bir renk seçildiğinde, o renge ait arabaları listeleyiniz.
