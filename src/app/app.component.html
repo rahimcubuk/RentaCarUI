@@ -10,20 +10,19 @@
     </div>
   </div>
 
-  <div
-    class="row mainbar">
+  <div class="row mainbar">
     <div class="col-2" style="text-align: center">
-      <div class="row car-filter" id="colors">
+      <div class="row mb-3" id="colors">
         <app-color></app-color>
       </div>
-      <div class="row car-filter" id="brands">
+    </div>
+    <div class="col-8">
+      <router-outlet></router-outlet>
+    </div>    
+    <div class="col-2" style="text-align: center">
+      <div class="row" id="brands">
         <app-brand></app-brand>
       </div>
-    </div>
-    <div class="col-10">
-      <!-- <app-car></app-car> -->
-      <router-outlet></router-outlet>
-      <!-- <app-car-details></app-car-details> -->
     </div>
   </div>
 </div>

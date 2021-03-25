@@ -6,31 +6,33 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <label *ngIf="!clearFilterFlag" style="background-color: aqua; width: 100%;">{{currentBrand.brandName}} model secildi.</label>
-<div class="list-group" *ngIf="dataLoaded != false">
-  <button
-    routerLink="/car"
-    (click)="clearFilter()"
-    type="button"
-    aria-current="true"
-    class="btn btn-success"
-    style="margin: 3%;"
-  >
-    TEMIZLE
-  </button>
 
-  <div class="list-group-item">
-    <div class="mb-0">
-      <input type="text" [(ngModel)]="brandText" class="form-control" id="brandText" placeholder="MODELLER">
+<div class="list-group" *ngIf="dataLoaded != false">
+  <div class="card">
+    <div class="card-header">
+      <div class="input-group flex-nowrap" >
+        <input type="text" [(ngModel)]="brandText" class="form-control" id="brandText" placeholder="Filtrele">
+        <button class="btn btn-fill btn-danger input-group-text" routerLink="/car" (click)="clearFilter()" >
+          <img src="assets/img/trash.png" width="22"/>
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row" *ngFor="let brand of brands | brandFilter:brandText">
+        <button (click)="setCurrentBrand(brand)" routerLink="/car/listbybrand/{{ brand.brandId }}" type="button" [class]="getCurrentBrandClass(brand)" aria-current="true">
+          <strong> {{ brand.brandName }} </strong> 
+        </button>
+      </div>
+    </div>
+    <div class="card-footer">
+      <form [formGroup]="brandForm" >
+        <div class="form-group" >
+          <div class="input-group flex-nowrap" >
+            <input type="text" formControlName="brandName" class="form-control" id="brandName" placeholder="Model Adi">
+            <button class="btn btn-fill btn-primary input-group-text" (click)="addBrand()">Ekle</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  <button
-    *ngFor="let brand of brands | brandFilter:brandText"
-    (click)="setCurrentBrand(brand)"
-    routerLink="/car/listbybrand/{{ brand.brandId }}"
-    type="button"
-    [class]="getCurrentBrandClass(brand)"
-    aria-current="true"
-  >
-    {{ brand.brandName }}
-  </button>
 </div>

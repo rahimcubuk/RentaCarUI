@@ -10,7 +10,6 @@ import { CarService } from 'src/app/services/car/car.service';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  cars: Car[] = [];
   carDetails: CarDetails[] = [];
   dataLoaded = false;
   filterText = '';
@@ -32,13 +31,6 @@ export class CarComponent implements OnInit {
     });
 
     this.getAllDetail();
-  }
-
-  getAll() {
-    this.carService.getAll().subscribe((response) => {
-      this.cars = response.data;
-      this.dataLoaded = true;
-    });
   }
 
   getAllDetail() {

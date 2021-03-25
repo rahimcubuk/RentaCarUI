@@ -5,12 +5,13 @@ import { Car } from 'src/app/models/car/car';
 import { CarDetails } from 'src/app/models/car/carDetails';
 import { DataResponseModel } from 'src/app/models/dataModel';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { ResponseModel } from 'src/app/models/responseModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CarService {
-  apiUrl = 'https://localhost:44309/api/car/';
+  private apiUrl = 'https://localhost:44309/api/car/';
   constructor(private httpClient: HttpClient) {}
 
   getAll(): Observable<ListResponseModel<Car>> {
@@ -36,5 +37,10 @@ export class CarService {
   getCarByBrand(brandId: number): Observable<ListResponseModel<CarDetails>> {
     let newUrl = this.apiUrl + 'listbybrand/' + brandId;
     return this.httpClient.get<ListResponseModel<CarDetails>>(newUrl);
+  }
+
+  addCar(car: Car): Observable<ResponseModel> {
+    let newUrl = this.apiUrl + 'add';
+    return this.httpClient.post<ResponseModel>(newUrl, car);
   }
 }

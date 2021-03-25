@@ -9,30 +9,31 @@
 <label *ngIf="!clearFilterFlag" style="background-color: aqua; width: 100%;">{{currentColor.colorName}} renk secildi.</label>
 
 <div class="list-group" *ngIf="dataLoaded != false">
-  <button
-    routerLink="/car"
-    (click)="clearFilter()"
-    type="button"
-    aria-current="true"
-    class="btn btn-success"
-    style="margin: 3%;"
-  >
-    TEMIZLE
-  </button>
-
-  <div class="list-group-item">
-    <div class="mb-0">
-      <input type="text" [(ngModel)]="colorText" class="form-control" id="colorText" placeholder="RENKLER">
+  <div class="card">
+    <div class="card-header">
+      <div class="input-group flex-nowrap" >
+        <input type="text" [(ngModel)]="colorText" class="form-control" id="colorText" placeholder="Filtrele">
+        <button class="btn btn-fill btn-danger input-group-text" routerLink="/car" (click)="clearFilter()" >
+          <img src="assets/img/trash.png" width="22"/>
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row" *ngFor="let color of colors | colorFilter:colorText">
+        <button (click)="setCurrentColor(color)" routerLink="/car/listbycolor/{{ color.colorId }}" type="button" [class]="getCurrentColorClass(color)" aria-current="true">
+          <strong> {{ color.colorName }} </strong> 
+        </button>
+      </div>
+    </div>
+    <div class="card-footer">
+      <form [formGroup]="colorForm" >
+        <div class="form-group mb-0" >
+          <div class="input-group flex-nowrap" >
+            <input type="text" formControlName="colorName" class="form-control col-7" id="colorName" placeholder="Renk Ekle">
+            <button class="btn btn-fill btn-primary input-group-text" (click)="addColor()">Ekle</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  <button
-    *ngFor="let color of colors | colorFilter:colorText"
-    (click)="setCurrentColor(color)"
-    routerLink="/car/listbycolor/{{ color.colorId }}"
-    type="button"
-    [class]="getCurrentColorClass(color)"
-    aria-current="true"
-  >
-    {{ color.colorName }}
-  </button>
 </div>

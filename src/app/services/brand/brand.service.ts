@@ -3,15 +3,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Brand } from 'src/app/models/brand/brand';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { ResponseModel } from 'src/app/models/responseModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BrandService {
-  brandListUrl = 'https://localhost:44309/api/brand/list';
+  private apiUrl = 'https://localhost:44309/api/brand/';
   constructor(private httpClient: HttpClient) {}
 
   getBrands(): Observable<ListResponseModel<Brand>> {
-    return this.httpClient.get<ListResponseModel<Brand>>(this.brandListUrl);
+    let newUrl = this.apiUrl + 'list';
+    return this.httpClient.get<ListResponseModel<Brand>>(newUrl);
+  }
+
+  addBrand(brand: Brand): Observable<ResponseModel> {
+    let newUrl = this.apiUrl + 'add';
+    return this.httpClient.post<ResponseModel>(newUrl, brand);
   }
 }

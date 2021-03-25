@@ -1,6 +1,12 @@
 <div class="row">
   <div class="mb-0">
-    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Araclar">
+
+    <div class="input-group flex-nowrap" >
+      <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Araclar">
+      <button class="btn btn-fill btn-primary input-group-text" routerLink="/car/add" >
+        YENI
+      </button>
+    </div>
   </div>
   <div
     *ngFor="let car of carDetails | carFilter:filterText"
@@ -8,13 +14,6 @@
     style="margin-bottom: 5px; margin-top: 5px"
   >
     <div class="card">
-      <!-- <img
-        src = "assets/img/{{ car.imagePath }}"
-        class="card-img-top"
-        alt="logo"
-        width="100%"
-        height="175"
-      /> -->
       <div class="card-body">
         <strong>
           <h5 class="card-title">{{ car.carName | uppercase  }}</h5>
