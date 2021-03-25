@@ -68,8 +68,9 @@ export class RentCarComponent implements OnInit {
       data.customerId = parseInt(data.customerId);
       this.rental = data;
       this.payVisible = true;
-      //this.router.navigate(['/payment/', JSON.stringify(rentModel)]);
       this.toastrService.info('Odeme Sayfasina Yonlendiriliyorsunuz.');
+      
+      this.router.navigate(['']);
     } else {
       this.toastrService.error('Bilgilerin dogrulugundan emin olun.', 'HATA!');
     }
