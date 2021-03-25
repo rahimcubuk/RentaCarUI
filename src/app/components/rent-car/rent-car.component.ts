@@ -63,8 +63,10 @@ export class RentCarComponent implements OnInit {
 
   rent() {
     if (this.rentForm.valid) {
-      this.rental = Object.assign({}, this.rentForm.value);
-      this.rental.carId = this.car.carId;
+      var data = Object.assign({}, this.rentForm.value);
+      data.carId = this.car.carId;
+      data.customerId = parseInt(data.customerId);
+      this.rental = data;
       this.payVisible = true;
       //this.router.navigate(['/payment/', JSON.stringify(rentModel)]);
       this.toastrService.info('Odeme Sayfasina Yonlendiriliyorsunuz.');

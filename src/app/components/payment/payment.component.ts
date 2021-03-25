@@ -6,6 +6,7 @@ import { Rental } from 'src/app/models/rental/rental';
 import { CarDetails } from 'src/app/models/car/carDetails';
 import { CarService } from 'src/app/services/car/car.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RentalService } from 'src/app/services/rental/rental.service';
 
 @Component({
   selector: 'app-payment',
@@ -22,7 +23,7 @@ export class PaymentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private paymentService: PaymentService,
-    private carService: CarService
+    private rentalService: RentalService
   ) {}
 
   ngOnInit(): void {
@@ -63,10 +64,8 @@ export class PaymentComponent implements OnInit {
       let payment = Object.assign({}, this.payForm.value);
       this.paymentService.CheckCreditCard(payment.cardNumber).subscribe(
         (response) => {
-          this.toastrService.info(
-            'Odeme Islemi Onaylandi.',
-            'Iyi Yolculuklar.'
-          );
+          console.log(this.rental);
+          this.addRental();
         },
         (response) => {
           this.toastrService.error('HATA!', response.error.message);
@@ -77,5 +76,27 @@ export class PaymentComponent implements OnInit {
       console.log(payment);
       this.toastrService.error('HATA!', 'Bilgilerin dogrulugundan emin olun.');
     }
+  }
+
+  addRental() {
+    this.rentalService.addRental(this.rental).subscribe(
+      (rentResponse) => {
+        this.toastrService.info('Odeme Islemi Onaylandi.', 'Iyi Yolculuklar.');
+      },
+      (rentResponse) => {
+        if (rentResponse.error.Errors.length > 0) {
+          for (
+            let index = 0;
+            index < rentResponse.error.Errors.length;
+            index++
+          ) {
+            this.toastrService.error(
+              rentResponse.error.Errors[index].ErrorMessage,
+              'Validation Error'
+            );
+          }
+        }
+      }
+    );
   }
 }
