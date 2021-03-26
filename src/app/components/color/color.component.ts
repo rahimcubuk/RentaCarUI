@@ -12,11 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 export class ColorComponent implements OnInit {
   colors: Color[] = [];
   currentColor: Color;
-  colorForm: FormGroup;
+  colorAddForm: FormGroup;
+  colorUpdateForm: FormGroup;
   clearFilterFlag = true;
   colorText = '';
   dataLoaded = false;
-  
+
   constructor(
     private colorService: ColorService,
     private formBuilder: FormBuilder,
@@ -35,8 +36,8 @@ export class ColorComponent implements OnInit {
     });
   }
 
-  setCurrentColor(color: Color) {
-    this.clearFilterFlag = false;
+  setCurrentColor(color: Color, flag: boolean) {
+    this.clearFilterFlag = flag;
     this.currentColor = color;
   }
 
@@ -46,21 +47,35 @@ export class ColorComponent implements OnInit {
   }
 
   getCurrentColorClass(color: Color) {
-    if (color == this.currentColor) {
-      return 'list-group-item list-group-item-action active';
+    if (color == this.currentColor && this.clearFilterFlag) {
+      return 'list-group-item list-group-item-info active col-9';
     }
-    return 'list-group-item list-group-item-info';
+    return 'list-group-item list-group-item-info col-9';
   }
 
   createColorForm() {
-    this.colorForm = this.formBuilder.group({
+    this.colorAddForm = this.formBuilder.group({
+      colorName: ['', Validators.required],
+    });
+    this.colorUpdateForm = this.formBuilder.group({
       colorName: ['', Validators.required],
     });
   }
 
+  validErrorControl(response: any) {
+    if (response.error.Errors.length > 0) {
+      for (let i = 0; i < response.error.Errors.length; i++) {
+        this.toastrService.error(
+          response.error.Errors[i].ErrorMessage,
+          'Ekleme Sirasinda Hata Olustu.'
+        );
+      }
+    }
+  }
+
   addColor() {
-    if (this.colorForm.valid) {
-      var data: Color = Object.assign({}, this.colorForm.value);
+    if (this.colorAddForm.valid) {
+      var data: Color = Object.assign({}, this.colorAddForm.value);
       this.colorService.addColor(data).subscribe(
         (response) => {
           this.toastrService.success(
@@ -70,20 +85,41 @@ export class ColorComponent implements OnInit {
           this.getColors();
         },
         (response) => {
-          if (response.error.Errors.length > 0) {
-            for (let i = 0; i < response.error.Errors.length; i++) {
-              this.toastrService.error(
-                response.error.Errors[i].ErrorMessage,
-                'Ekleme Sirasinda Hata Olustu.'
-              );
-            }
-          }
+          this.validErrorControl(response);
         }
       );
     } else {
       this.toastrService.error(
         'Girdiginiz Verilerin Dogrulugunu Kontrol Edin.',
         'Ekleme Sirasinda Hata Olustu.'
+      );
+    }
+  }
+
+  updateColor() {
+    if (this.colorUpdateForm.valid) {
+      var data: Color = Object.assign({}, this.colorUpdateForm.value);
+      data.colorId = this.currentColor.colorId;
+      console.log(data);
+      this.colorService.updateColor(data).subscribe(
+        (response) => {
+          this.toastrService.success(
+            'Guncelleme Islemi Tamamlandi',
+            data.colorName
+          );
+          this.getColors();
+        },
+        (response) => {
+          this.validErrorControl(response);
+        }
+      );
+    } else {
+      var data: Color = Object.assign({}, this.colorUpdateForm.value);
+      data.colorId = this.currentColor.colorId;
+      console.log(data);
+      this.toastrService.error(
+        'Girdiginiz Verilerin Dogrulugunu Kontrol Edin.',
+        'Guncelleme Sirasinda Hata Olustu.'
       );
     }
   }

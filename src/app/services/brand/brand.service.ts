@@ -21,4 +21,9 @@ export class BrandService {
     let newUrl = this.apiUrl + 'add';
     return this.httpClient.post<ResponseModel>(newUrl, brand);
   }
+
+  updateBrand(brand: Brand): Observable<ResponseModel> {
+    let newUrl = this.apiUrl + 'update';
+    return this.httpClient.post<ResponseModel>(newUrl, brand);
+  }
 }

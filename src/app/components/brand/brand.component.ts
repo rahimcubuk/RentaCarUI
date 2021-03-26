@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class BrandComponent implements OnInit {
   brands: Brand[] = [];
   currentBrand: Brand;
-  brandForm: FormGroup;
+  brandAddForm: FormGroup;
+  brandUpdateForm: FormGroup;
   clearFilterFlag = true;
   dataLoaded = false;
   brandText = '';
@@ -40,27 +41,41 @@ export class BrandComponent implements OnInit {
     this.getBrand();
   }
 
-  setCurrentBrand(brand: Brand) {
+  setCurrentBrand(brand: Brand, flag:boolean) {
     this.currentBrand = brand;
-    this.clearFilterFlag = false;
+    this.clearFilterFlag = flag;
   }
 
   getCurrentBrandClass(brand: Brand) {
-    if (brand == this.currentBrand) {
-      return 'list-group-item list-group-item-action active';
+    if (brand == this.currentBrand && this.clearFilterFlag) {
+      return 'list-group-item list-group-item-info active col-9';
     }
-    return 'list-group-item list-group-item-info';
+    return 'list-group-item list-group-item-info col-9';
   }
 
   createBrandForm() {
-    this.brandForm = this.formBuilder.group({
+    this.brandAddForm = this.formBuilder.group({
+      brandName: ['', Validators.required],
+    });
+    this.brandUpdateForm = this.formBuilder.group({
       brandName: ['', Validators.required],
     });
   }
 
+  validErrorControl(response: any) {
+    if (response.error.Errors.length > 0) {
+      for (let i = 0; i < response.error.Errors.length; i++) {
+        this.toastrService.error(
+          response.error.Errors[i].ErrorMessage,
+          'Ekleme Sirasinda Hata Olustu.'
+        );
+      }
+    }
+  }
+
   addBrand() {
-    if (this.brandForm.valid) {
-      var data: Brand = Object.assign({}, this.brandForm.value);
+    if (this.brandAddForm.valid) {
+      var data: Brand = Object.assign({}, this.brandAddForm.value);
       this.brandService.addBrand(data).subscribe(
         (response) => {
           this.toastrService.success(
@@ -70,14 +85,30 @@ export class BrandComponent implements OnInit {
           this.getBrand();
         },
         (response) => {
-          if (response.error.Errors.length > 0) {
-            for (let i = 0; i < response.error.Errors.length; i++) {
-              this.toastrService.error(
-                response.error.Errors[i].ErrorMessage,
-                'Ekleme Sirasinda Hata Olustu.'
-              );
-            }
-          }
+          this.validErrorControl(response);
+        }
+      );
+    } else {
+      this.toastrService.error(
+        'Girdiginiz Verilerin Dogrulugunu Kontrol Edin.',
+        'Ekleme Sirasinda Hata Olustu.'
+      );
+    }
+  }
+
+  updateBrand() {
+    if (this.brandUpdateForm.valid) {
+      var data: Brand = Object.assign({}, this.brandUpdateForm.value);
+      this.brandService.updateBrand(data).subscribe(
+        (response) => {
+          this.toastrService.success(
+            'Ekleme Islemi Tamamlandi',
+            data.brandName
+          );
+          this.getBrand();
+        },
+        (response) => {
+          this.validErrorControl(response);
         }
       );
     } else {

@@ -1,6 +1,5 @@
 <div class="row">
   <div class="mb-0">
-
     <div class="input-group flex-nowrap" >
       <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Araclar">
       <button class="btn btn-fill btn-primary input-group-text" routerLink="/car/add" >
@@ -8,16 +7,14 @@
       </button>
     </div>
   </div>
-  <div
-    *ngFor="let car of carDetails | carFilter:filterText"
-    class="col-4"
-    style="margin-bottom: 5px; margin-top: 5px"
-  >
-    <div class="card">
-      <div class="card-body">
+  <div *ngFor="let car of carDetails | carFilter:filterText" class="col-4" style="margin-bottom: 5px; margin-top: 5px;" >
+    <div class="card" id="carCard">
+      <div class="card-header">
         <strong>
-          <h5 class="card-title">{{ car.carName | uppercase  }}</h5>
+        <h5 class="card-title">{{ car.carName | uppercase  }}</h5>
         </strong>
+      </div>
+      <div class="card-body" style="height: 240px;">
         <p class="card-text">
           {{ car.modelYear }}
           <strong> {{ car.brandName }} </strong>
@@ -27,6 +24,8 @@
           Fiyat: <strong> {{ car.dailyPrice | currency:"TRY":"₺" }} </strong>
         </p>
         <p class="card-text">Aciklama: {{ car.description }}</p>
+      </div>
+      <div class="card-footer">
         <div style="width: 100%;" class="btn-group" role="group" aria-label="Basic mixed styles example">
           <button type="button" class="btn btn-danger">KIRALA</button>
           <button type="button" class="btn btn-success" routerLink="/car/details/{{ car.carId }}" >DETAYLAR</button>

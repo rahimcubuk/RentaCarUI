@@ -29,6 +29,11 @@ export class CarService {
     return this.httpClient.get<DataResponseModel<CarDetails>>(newUrl);
   }
 
+  getCarById(carId: number): Observable<DataResponseModel<Car>> {
+    let newUrl = this.apiUrl + carId;
+    return this.httpClient.get<DataResponseModel<Car>>(newUrl);
+  }
+
   getCarByColor(colorId: number): Observable<ListResponseModel<CarDetails>> {
     let newUrl = this.apiUrl + 'listbycolor/' + colorId;
     return this.httpClient.get<ListResponseModel<CarDetails>>(newUrl);
@@ -41,6 +46,11 @@ export class CarService {
 
   addCar(car: Car): Observable<ResponseModel> {
     let newUrl = this.apiUrl + 'add';
+    return this.httpClient.post<ResponseModel>(newUrl, car);
+  }
+
+  updateCar(car: Car): Observable<ResponseModel> {
+    let newUrl = this.apiUrl + 'update';
     return this.httpClient.post<ResponseModel>(newUrl, car);
   }
 }

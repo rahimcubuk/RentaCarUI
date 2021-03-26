@@ -22,9 +22,9 @@ export class CarDetailsComponent implements OnInit {
   car: CarDetails;
   rental: Rental;
   images: CarImage[] = [];
+  edit = false;
   rentFlag = false;
   dataLoaded = false;
-
   constructor(
     private activedRoute: ActivatedRoute,
     private carService: CarService,
@@ -58,5 +58,14 @@ export class CarDetailsComponent implements OnInit {
     this.rentalService.getRentalByCar(carId).subscribe((response) => {
       this.rentFlag = response.data.returnDate == null ? true : false;
     });
+  }
+
+  editCar() {
+    this.edit = true;
+  }
+
+  editEvent($event: boolean) {
+    this.edit = $event;
+    this.getCarDetail(this.car.carId);
   }
 }

@@ -1,0 +1,55 @@
+<div class="content">
+    <div class="card" style="margin-top: 5%;">
+        <div class="card-header" style="text-align: center;">
+            <h4> ARAC BILGILERINI GIRINIZ </h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="carForm">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group flex-nowrap mb-1" >
+                                <span class="input-group-text col-4" id="carName" >Arac Adi: </span>
+                                <input type="text" formControlName="carName" class="form-control" id="carName" placeholder="{{car?.carName}}">
+                            </div>
+                            <div class="input-group flex-nowrap mb-1">
+                                <span class="input-group-text col-4" id="returnDate"> Model: </span>
+                                <select class="form-group form-select" formControlName="brandId" type="number" id="brandId" placeholder="Modeller" >
+                                  <option class="form-control" type="number" [value]="brand.brandId" *ngFor="let brand of brands">
+                                    <strong> {{ brand.brandName }} </strong> 
+                                  </option>
+                                </select>
+                            </div>
+                            <div class="input-group flex-nowrap mb-1">
+                                <span class="input-group-text col-4" id="returnDate"> Renk: </span>
+                                <select class="form-group form-select" formControlName="colorId" type="number" id="colorId" placeholder="Renkler" >
+                                  <option class="form-control" type="number" [value]="color.colorId" *ngFor="let color of colors">
+                                    <strong> {{ color.colorName }} </strong> 
+                                  </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group flex-nowrap mb-1" >
+                                <span class="input-group-text col-4" id="modelYear" >Model Yili: </span>
+                                <input type="text" formControlName="modelYear" class="form-control" id="modelYear" placeholder="{{car?.modelYear}}">
+                            </div>
+                            <div class="input-group flex-nowrap mb-1" >
+                                <span class="input-group-text col-4" id="dailyPrice" >Gunluk Fiyat: </span>
+                                <input type="number" formControlName="dailyPrice" class="form-control" id="dailyPrice" placeholder="{{car?.dailyPrice}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group flex-nowrap mb-1" >
+                        <span class="input-group-text col-2" id="description" >Aciklama: </span>
+                        <input type="text" formControlName="description" class="form-control" id="description" placeholder="{{car?.description}}">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer" style="text-align: right;">
+            <button class="btn btn-fill btn-primary" (click)="updateCar()" style="width: 100px;margin-right: 1%;"> <b> KAYDET </b> </button>
+            <button class="btn btn-fill btn-danger" (click)="cancel()" style="width: 100px;"> <b> VAZGEC </b> </button>
+        </div>
+    </div>
+</div>

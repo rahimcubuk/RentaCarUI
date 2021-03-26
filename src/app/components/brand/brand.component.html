@@ -7,7 +7,7 @@
 </div>
 <label *ngIf="!clearFilterFlag" style="background-color: aqua; width: 100%;">{{currentBrand.brandName}} model secildi.</label>
 
-<div class="list-group" *ngIf="dataLoaded != false">
+<div class="list-group" *ngIf="dataLoaded != false" style="font-size: smaller;">
   <div class="card">
     <div class="card-header">
       <div class="input-group flex-nowrap" >
@@ -18,14 +18,19 @@
       </div>
     </div>
     <div class="card-body">
-      <div class="row" *ngFor="let brand of brands | brandFilter:brandText">
-        <button (click)="setCurrentBrand(brand)" routerLink="/car/listbybrand/{{ brand.brandId }}" type="button" [class]="getCurrentBrandClass(brand)" aria-current="true">
-          <strong> {{ brand.brandName }} </strong> 
-        </button>
+      <div class="row mb-1" *ngFor="let brand of brands | brandFilter:brandText">
+        <div class="input-group flex-nowrap">
+          <button (click)="setCurrentBrand(brand, true)" routerLink="/car/listbybrand/{{ brand.brandId }}" type="button" [class]="getCurrentBrandClass(brand)" aria-current="true">
+            <strong> {{ brand.brandName }} </strong> 
+          </button>
+          <button class="btn btn-fill btn-secondary input-group-text" data-bs-toggle="modal" data-bs-target="#updateBrandModal" (click)="setCurrentBrand(brand, false)">
+            <img src="assets/img/edit.png" width="22"/>
+          </button>
+        </div>
       </div>
     </div>
     <div class="card-footer">
-      <form [formGroup]="brandForm" >
+      <form [formGroup]="brandAddForm" >
         <div class="form-group" >
           <div class="input-group flex-nowrap" >
             <input type="text" formControlName="brandName" class="form-control" id="brandName" placeholder="Model Adi">
@@ -35,4 +40,29 @@
       </form>
     </div>
   </div>
+
+  <div class="modal fade" id="updateBrandModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">MODEL GUNCELLEMESI</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="brandUpdateForm" >
+            <div class="form-group mb-0" >
+              <div class="input-group flex-nowrap" >
+                <input type="text" formControlName="brandName" class="form-control col-7" id="brandName" placeholder="Model">
+                <button class="btn btn-fill btn-primary input-group-text" (click)="updateBrand()" data-bs-dismiss="modal">Guncelle</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">VAZGEC</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

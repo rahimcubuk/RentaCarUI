@@ -2,7 +2,7 @@
   <div class="card">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="border: 1px solid black" >
       <div class="carousel-inner">
-        <div *ngFor="let image of images; first as firstImage" class="carousel-item" [ngClass]="{ active: firstImage }" style=" background-color: rgba(82, 68, 92, 0.233); padding: 1% 0 1% 28%; " >
+        <div *ngFor="let image of images; first as firstImage" class="carousel-item" [ngClass]="{ active: firstImage }" style=" background-color: rgba(82, 68, 92, 0.233); text-align: center;" >
           <img src="assets/img/{{ image.imagePath }}" alt="{{ car.carName }}" width="480" height="360" />
         </div>
       </div>
@@ -15,47 +15,25 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <table *ngIf="car" class="card-body table table-striped mt-2">
-      <tbody>
-        <tr>
-          <th scope="row">Marka</th>
-          <td>: {{ car.brandName }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Model</th>
-          <td>: {{ car.carName }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Renk</th>
-          <td>: {{ car.colorName }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Fiyat</th>
-          <td>
-            : {{ car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2" }}/Gunluk
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Model Yılı</th>
-          <td>: {{ car.modelYear }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Aciklama</th>
-          <td>: {{ car.description }}</td>
-        </tr>
-        <tr *ngIf="rentFlag">
-          <th colspan="2" scope="row" style="text-align: center">
-            ARAC KIRALANMIS.
-          </th>
-        </tr>
-        <tr *ngIf="!rentFlag">
-          <td colspan="2" scope="row" style="text-align: center">
-            <button routerLink="/rent/car/{{ car.carId }}" type="button" class="btn btn-success" style="width: 150px" >
-              KIRALA
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div *ngIf="car">
+      <table *ngIf="!edit" class="card-body table table-striped mt-2">
+        <tbody>
+          <tr> <th scope="row">Marka</th> <td>: {{ car.brandName }}</td> </tr>
+          <tr> <th scope="row">Model</th> <td>: {{ car.carName }}</td> </tr>
+          <tr> <th scope="row">Renk</th> <td>: {{ car.colorName }}</td> </tr>
+          <tr> <th scope="row">Fiyat</th> <td> : {{ car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2" }}/Gunluk </td> </tr>
+          <tr> <th scope="row">Model Yılı</th> <td>: {{ car.modelYear }} </td> </tr>
+          <tr> <th scope="row">Aciklama</th> <td>: {{ car.description }}</td> </tr>
+          <tr *ngIf="rentFlag"> <th colspan="2" scope="row" style="text-align: center"> ARAC KIRALANMIS. </th> </tr>
+          <tr *ngIf="!rentFlag">
+            <td colspan="2" scope="row" style="text-align: center">
+              <button routerLink="/rent/car/{{ car.carId }}" type="button" class="btn btn-success" style="width: 150px" > KIRALA </button>
+              <button type="button" class="btn btn-secondary" style="width: 150px" (click)="editCar()" > DUZENLE </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <app-car-update *ngIf="edit" [carId]="car.carId" (edit)="editEvent($event)"></app-car-update>
+    </div>
   </div>
 </div>

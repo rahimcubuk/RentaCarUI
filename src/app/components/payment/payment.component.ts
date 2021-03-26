@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from 'src/app/services/payment/payment.service';
 import { Rental } from 'src/app/models/rental/rental';
 import { CarDetails } from 'src/app/models/car/carDetails';
-import { CarService } from 'src/app/services/car/car.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RentalService } from 'src/app/services/rental/rental.service';
 

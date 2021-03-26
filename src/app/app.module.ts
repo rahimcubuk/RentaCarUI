@@ -21,6 +21,7 @@ import { BrandFilterPipe } from './pipes/filterPipes/brandPipes/brand-filter.pip
 import { PaymentComponent } from './components/payment/payment.component';
 import { RentCarComponent } from './components/rent-car/rent-car.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarUpdateComponent } from './components/car-update/car-update.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     PaymentComponent,
     RentCarComponent,
     CarAddComponent,
+    CarUpdateComponent,
   ],
   imports: [
     BrowserModule,
