@@ -1,6 +1,12 @@
 # RentaCarProject Kullanici Arayuzu
 Kodlama.io kamp gelisim projesidir. Gelistiren Rahim Cubuk.
 
+### Kodlama.io 20. gun odev gereksinimleri
+* Backend Custom Error Middleware ekleyip fluent validation için refactoring yapınız.
+* Reactive Forms kullanarak Brand, Color, Car Ekleme sayfalarını oluşturunuz.
+* Brand,Color,Car listesinde güncelleme butonu ekleyiniz. Tıklanan ilgili elemanın detay sayfasına yönlendirerek güncelleme imkanı veriniz.
+* Toastr desteği veriniz.
+
 ### Kodlama.io 19. gun odev gereksinimleri
 * Car, Brand, Color için pipe ile arama desteği ekleyiniz.
 * Car sayfasına 2 adet açılır kutu ekleyiniz. Html-Select Option. Bu açılır kutularda sırasıyla Marka ve Renk listeleyiniz.
