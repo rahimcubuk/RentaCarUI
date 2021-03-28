@@ -69,8 +69,6 @@ export class RentCarComponent implements OnInit {
       this.rental = data;
       this.payVisible = true;
       this.toastrService.info('Odeme Sayfasina Yonlendiriliyorsunuz.');
-      
-      this.router.navigate(['']);
     } else {
       this.toastrService.error('Bilgilerin dogrulugundan emin olun.', 'HATA!');
     }

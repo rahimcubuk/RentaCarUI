@@ -5,37 +5,40 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<button class="btn btn-info dropdown-toggle" type="button" id="rentalList" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;" >
-  <strong> KIRALAMA LISTESI </strong>
-</button>
-<div class="dropdown-menu" aria-labelledby="rentalList" style="padding:1%">
-  <table *ngIf="dataLoaded != false" 
-    class="table table-hover table-sm"
-    style="width: 1000px;">
-  <thead>
-    <tr><th colspan="6" style="text-align: center; background-color: rgba(110, 226, 226, 0.205);">KIRALANAN ARACLAR</th></tr>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Musteri</th>
-      <th scope="col">Arac</th>
-      <th scope="col">Kiralama Tarihi</th>
-      <th scope="col">Teslim Tarihi</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let rental of rentals">
-      <th scope="row">{{ rental.id }}</th>
-      <td>{{ rental.customerFirstName }} {{ rental.customerLastName }}</td>
-      <td>{{ rental.carName }}</td>
-      <td>{{ rental.rentDate | date:'shortDate' }}</td>
-      <td>{{ rental.returnDate | date:'shortDate' }}</td>
-      <td>
-        <button type="button" class="btn btn-warning" style="margin-right: 5px;">Duzenle</button>
-        <button type="button" class="btn btn-danger">Sil</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+
+<div class="content" style="text-align: center;">
+  <table *ngIf="dataLoaded != false" class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th colspan="6" style="text-align: center; background-color: rgba(110, 226, 226, 0.205)" >
+          KIRALANAN ARACLAR
+        </th>
+      </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Musteri</th>
+        <th scope="col">Arac</th>
+        <th scope="col">Kiralama Tarihi</th>
+        <th scope="col">Teslim Tarihi</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rental of rentals" >
+        <th scope="row">{{ rental.id }}</th>
+        <td>{{ rental.customerFirstName }} {{ rental.customerLastName }}</td>
+        <td>{{ rental.carName }}</td>
+        <td>{{ rental.rentDate | date: "shortDate" }}</td>
+        <td>{{ rental.returnDate | date: "shortDate" }}</td>
+        <td>
+          <button type="button" class="btn btn-warning" style="margin-right: 5px">
+            Duzenle
+          </button>
+          <button type="button" class="btn btn-danger">Sil</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
 

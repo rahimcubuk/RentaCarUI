@@ -5,30 +5,24 @@
     </div>
 
     <div style="width: 40%; float: left">
-      <img src="assets/img/logo.png" alt="logo" width="100%" height="100%" />
+      <a routerLink="car">
+        <img src="assets/img/logo.png" alt="logo" width="100%" height="100%" />
+      </a>
     </div>
   </div>
   <div class="col-9">
-    <div class="row" style="padding-top: 19px">
-      <div class="col-8">
+    <div class="row" style="padding-top: 40px">
+      <div class="col-9">
         <table>
           <tr>
             <td>
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-danger dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >
                   Renkler
                 </button>
                 <ul class="dropdown-menu">
                   <li *ngFor="let color of colors">
-                    <a
-                      class="dropdown-item"
-                      routerLink="/car/listbycolor/{{ color.colorId }}"
-                    >
+                    <a class="dropdown-item" routerLink="/car/listbycolor/{{ color.colorId }}" >
                       {{ color.colorName }}
                     </a>
                   </li>
@@ -37,12 +31,7 @@
             </td>
             <td>
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-danger dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >
                   Modeller
                 </button>
                 <ul class="dropdown-menu">
@@ -53,33 +42,20 @@
               </div>
             </td>
             <td>
-              <a type="button" href="#droppers" class="btn btn-secondary"
-                >Musteriler</a
-              >
+              <a type="button" href="#droppers" class="btn btn-secondary" routerLink="customers" >Musteriler</a>
             </td>
             <td>
-              <a type="button" href="#droppers" class="btn btn-secondary"
-                >Kiralama</a
-              >
+              <a type="button" class="btn btn-secondary" routerLink="rentals"> Kiralananlar </a>
             </td>
             <td>
-              <a type="button" href="#car-container" class="btn btn-secondary"
-                >Araclar</a
-              >
+              <a type="button" href="#car-container" class="btn btn-secondary"> Araclar </a>
             </td>
           </tr>
         </table>
       </div>
-      <div class="col-4">
-        <form class="d-flex">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">Ara</button>
-        </form>
+      <div class="col-3" style="text-align:right; margin-top: 10px;">
+        <button class="btn btn-outline-success" routerLink="login" style="margin: 0px 5px 0px 5px;">GIRIS</button>
+        <button class="btn btn-outline-success" routerLink="register" style="margin: 0px 22px 0px 5px;">KAYIT</button>
       </div>
     </div>
   </div>

@@ -11,8 +11,8 @@ export class PaymentService {
   private apiUrl = 'https://localhost:44309/api/card/';
   constructor(private httpClient: HttpClient) {}
 
-  CheckCreditCard(card: string): Observable<ResponseModel> {
-    let newUrl = this.apiUrl + 'check/' + card;
-    return this.httpClient.get<ResponseModel>(newUrl);
+  CheckCreditCard(card: CreditCard, totalPrice:number): Observable<ResponseModel> {
+    let newUrl = this.apiUrl + 'check/' + totalPrice;
+    return this.httpClient.post<ResponseModel>(newUrl, card);
   }
 }

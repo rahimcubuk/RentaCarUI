@@ -20,7 +20,7 @@ export class RentalService {
   }
 
   getRentalByCar(car: number): Observable<DataResponseModel<RentalDetail>> {
-    let newUrl = this.apiUrl + '/list/' + car;
+    let newUrl = this.apiUrl + '/check/' + car;
     return this.httpClient.get<DataResponseModel<RentalDetail>>(newUrl);
   }
 

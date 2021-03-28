@@ -1,0 +1,16 @@
+<main class="text-center form-signin">
+    <form [formGroup]="loginForm">
+      <h1 class="h3 mb-3 fw-normal">LUTFEN GIRIS YAPIN</h1>
+  
+      <div class="form-floating">
+        <input type="email" class="form-control" formControlName="email" id="email" placeholder="isim@ornek.com">
+        <label for="floatingInput">Email Adresi</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" formControlName="password" id="password" placeholder="Sifre">
+        <label for="floatingPassword">Sifre</label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="login()" >GIRIS YAP</button>
+      <img class="mb-4" src="assets/img/logo_1.png" alt="" width="100%" height="auto">
+    </form>
+</main>

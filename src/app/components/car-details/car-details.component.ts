@@ -55,9 +55,22 @@ export class CarDetailsComponent implements OnInit {
   }
 
   isRent(carId: number) {
-    this.rentalService.getRentalByCar(carId).subscribe((response) => {
-      this.rentFlag = response.data.returnDate == null ? true : false;
-    });
+    this.rentalService.getRentalByCar(carId).subscribe(
+      (response) => {
+        // this.rentFlag = response.data.returnDate == null ? true : false;
+        let today = Date();
+        var date1 = new Date(response.data.returnDate.toString());
+        var date2 = new Date(today.toString());
+        var difference = date2.getTime() - date1.getTime();
+
+        if (response.data.returnDate == null || difference < 0)
+          this.rentFlag = true;
+        else this.rentFlag = false;
+      },
+      (response) => {
+        this.rentFlag = false;
+      }
+    );
   }
 
   editCar() {

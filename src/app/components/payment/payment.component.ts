@@ -5,6 +5,7 @@ import { Rental } from 'src/app/models/rental/rental';
 import { CarDetails } from 'src/app/models/car/carDetails';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RentalService } from 'src/app/services/rental/rental.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -21,7 +22,8 @@ export class PaymentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private paymentService: PaymentService,
-    private rentalService: RentalService
+    private rentalService: RentalService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -60,9 +62,8 @@ export class PaymentComponent implements OnInit {
   pay() {
     if (this.payForm.valid) {
       let payment = Object.assign({}, this.payForm.value);
-      this.paymentService.CheckCreditCard(payment.cardNumber).subscribe(
+      this.paymentService.CheckCreditCard(payment, this.totalPrice).subscribe(
         (response) => {
-          console.log(this.rental);
           this.addRental();
         },
         (response) => {
@@ -80,6 +81,7 @@ export class PaymentComponent implements OnInit {
     this.rentalService.addRental(this.rental).subscribe(
       (rentResponse) => {
         this.toastrService.info('Odeme Islemi Onaylandi.', 'Iyi Yolculuklar.');
+        this.router.navigate(['car']);
       },
       (rentResponse) => {
         if (rentResponse.error.Errors.length > 0) {

@@ -6,39 +6,36 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<button class="btn btn-info dropdown-toggle" type="button" id="customerList" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;" >
-  <strong> MUSTERI LISTESI </strong>
-</button>
-<div class="dropdown-menu" aria-labelledby="customerList" style="padding: 1%;">
-  
-<table
-*ngIf="dataLoaded != false"
-class="table table-hover table-sm"
-style="width: 1000px"
->
-<thead>
-  <tr><th colspan="6" style="text-align: center; background-color: rgba(110, 226, 226, 0.205);">MUSTERILER</th></tr>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Musteri</th>
-    <th scope="col">Sirketi</th>
-    <th scope="col">Mail Adresi</th>
-    <th scope="col"></th>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let customer of customers">
-    <th scope="row">{{ customer.customerId }}</th>
-    <td>{{ customer.firstName }} {{ customer.lastName }}</td>
-    <td>{{ customer.companyName }}</td>
-    <td>{{ customer.eMail }}</td>
-    <td>
-      <button type="button" class="btn btn-warning" style="margin-right: 5px">
-        Duzenle
-      </button>
-      <button type="button" class="btn btn-danger">Sil</button>
-    </td>
-  </tr>
-</tbody>
+<table *ngIf="dataLoaded != false" class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th
+        colspan="6"
+        style="text-align: center; background-color: rgba(110, 226, 226, 0.205)"
+      >
+        MUSTERILER
+      </th>
+    </tr>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Musteri</th>
+      <th scope="col">Sirketi</th>
+      <th scope="col">Mail Adresi</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <th scope="row">{{ customer.customerId }}</th>
+      <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+      <td>{{ customer.companyName }}</td>
+      <td>{{ customer.eMail }}</td>
+      <td>
+        <button type="button" class="btn btn-warning" style="margin-right: 5px">
+          Duzenle
+        </button>
+        <button type="button" class="btn btn-danger">Sil</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
-</div>
