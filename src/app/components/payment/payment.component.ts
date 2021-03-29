@@ -64,7 +64,7 @@ export class PaymentComponent implements OnInit {
       let payment = Object.assign({}, this.payForm.value);
       this.paymentService.CheckCreditCard(payment, this.totalPrice).subscribe(
         (response) => {
-          this.addRental();
+          this.checkFindexPoint(response.data.id);
         },
         (response) => {
           this.toastrService.error('HATA!', response.error.message);
@@ -77,10 +77,31 @@ export class PaymentComponent implements OnInit {
     }
   }
 
+  checkFindexPoint(card: number) {
+    this.paymentService.CheckFindexPoint(card).subscribe(
+      (response) => {
+        if (response.data.findexPoint > 1200) {
+          this.addRental();
+        } else {
+          this.toastrService.error(
+            'Findeks Puaniniz Dusuk',
+            'Odeme Basarisiz.'
+          );
+        }
+      },
+      (response) => {
+        this.toastrService.info(
+          'Findeks Puaniniz alinamadi.',
+          'Odeme Basarisiz.'
+        );
+      }
+    );
+  }
+
   addRental() {
     this.rentalService.addRental(this.rental).subscribe(
       (rentResponse) => {
-        this.toastrService.info('Odeme Islemi Onaylandi.', 'Iyi Yolculuklar.');
+        this.toastrService.success('Odeme Islemi Onaylandi.', 'Iyi Yolculuklar.');
         this.router.navigate(['car']);
       },
       (rentResponse) => {

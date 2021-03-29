@@ -12,7 +12,7 @@
   </div>
   <div class="col-9">
     <div class="row" style="padding-top: 40px">
-      <div class="col-9">
+      <div class="col-8">
         <table>
           <tr>
             <td>
@@ -53,9 +53,21 @@
           </tr>
         </table>
       </div>
-      <div class="col-3" style="text-align:right; margin-top: 10px;">
-        <button class="btn btn-outline-success" routerLink="login" style="margin: 0px 5px 0px 5px;">GIRIS</button>
-        <button class="btn btn-outline-success" routerLink="register" style="margin: 0px 22px 0px 5px;">KAYIT</button>
+      <div class="col-4" style="text-align:right; margin-top: 10px;" >
+        <div *ngIf="!isAuthFlag" >
+          <button class="btn btn-outline-success" routerLink="login" style="margin: 0px 5px 0px 5px;">GIRIS</button>
+          <button class="btn btn-outline-success" routerLink="register" style="margin: 0px 22px 0px 5px;">KAYIT</button>
+        </div>
+        <div *ngIf="isAuthFlag" >
+          <div style="float: right;">
+            <button class="btn btn-fill btn-secondary" routerLink="logout" style="width: auto; height: 40px;">
+                <img src="assets/img/logout.png" width="30"/>
+            </button>
+          </div>
+          <div style="float: right;">
+            <span class="text-uppercase fs-6 input-group-text"> {{userName}} </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -10,11 +10,12 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { LocalStorageService } from 'src/app/services/storage/local-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private storageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
@@ -43,9 +45,10 @@ export class LoginComponent implements OnInit {
       var data: LoginModel = Object.assign({}, this.loginForm.value);
       this.authService.login(data).subscribe(
         (response) => {
-          this.toastrService.info(response.message);
-          localStorage.setItem('token', response.data.token);
-          this.router.navigate(['car']);
+          this.toastrService.info("Basariyla Giris Yapildi.");
+          this.storageService.Set(response.data.token);
+          console.log(this.authService.getUserName())
+          window.location.href='';
         },
         (response) => {
           //console.log(response);

@@ -58,14 +58,14 @@ export class CarDetailsComponent implements OnInit {
     this.rentalService.getRentalByCar(carId).subscribe(
       (response) => {
         // this.rentFlag = response.data.returnDate == null ? true : false;
-        let today = Date();
-        var date1 = new Date(response.data.returnDate.toString());
-        var date2 = new Date(today.toString());
-        var difference = date2.getTime() - date1.getTime();
-
-        if (response.data.returnDate == null || difference < 0)
-          this.rentFlag = true;
-        else this.rentFlag = false;
+        if (response.data.returnDate != null) {
+          let today = Date();
+          var date1 = new Date(response.data.returnDate.toString());
+          var date2 = new Date(today.toString());
+          var difference = date2.getTime() - date1.getTime();
+          console.log(date1 + ' ' + response.data.returnDate);
+          this.rentFlag = difference < 0 ? true : false;
+        } else this.rentFlag = true;
       },
       (response) => {
         this.rentFlag = false;

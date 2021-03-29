@@ -29,7 +29,6 @@ export class CarComponent implements OnInit {
         this.getAllDetail();
       }
     });
-
     this.getAllDetail();
   }
 

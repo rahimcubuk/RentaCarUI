@@ -18,7 +18,7 @@
     <div *ngIf="car">
       <table *ngIf="!edit" class="card-body table table-striped mt-2">
         <tbody>
-          <tr> <th scope="row">Marka</th> <td>: {{ car.brandName }}</td> </tr>
+          <tr> <th scope="row">Marka</th> <td>: {{ car.brandName }} </td> </tr>
           <tr> <th scope="row">Model</th> <td>: {{ car.carName }}</td> </tr>
           <tr> <th scope="row">Renk</th> <td>: {{ car.colorName }}</td> </tr>
           <tr> <th scope="row">Fiyat</th> <td> : {{ car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2" }}/Gunluk </td> </tr>
@@ -28,7 +28,14 @@
           <tr *ngIf="!rentFlag">
             <td colspan="2" scope="row" style="text-align: center">
               <button routerLink="/rent/car/{{ car.carId }}" type="button" class="btn btn-success" style="width: 150px" > KIRALA </button>
-              <button type="button" class="btn btn-secondary" style="width: 150px" (click)="editCar()" > DUZENLE </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" scope="row" style="text-align: center">
+              <button type="button" class="btn btn-fill btn-info" (click)="editCar()" style="width: auto;" > 
+                <b> ARAC BILGILERINI GUNCELLE </b>
+                <img src="assets/img/edit.png" width="25" height="25"/> 
+              </button>
             </td>
           </tr>
         </tbody>

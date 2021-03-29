@@ -9,13 +9,14 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LocalStorageService } from 'src/app/services/storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
   constructor(
-    private authService: AuthService,
+    private storageService: LocalStorageService,
     private toastrService: ToastrService,
     private router: Router
   ) {}
@@ -27,7 +28,7 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.isAuthenticated()) {
+    if (this.storageService.isAuthenticated()) {
       return true;
     } else {
       this.router.navigate(['login']);
