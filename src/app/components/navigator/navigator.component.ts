@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
 import { Color } from 'src/app/models/color/color';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -18,10 +19,12 @@ export class NavigatorComponent implements OnInit {
   isAuthFlag = false;
   colorLoaded = false;
   brandLoaded = false;
+  
   constructor(
     private colorService: ColorService,
     private brandService: BrandService,
     private storageService: LocalStorageService,
+    private toastrService: ToastrService,
     private authService: AuthService
   ) {}
 
@@ -48,7 +51,13 @@ export class NavigatorComponent implements OnInit {
   isAuthenticated() {
     this.isAuthFlag = this.storageService.isAuthenticated();
     if (this.isAuthFlag) {
-      this.userName = this.authService.getUserName();
+      this.userName = this.authService.getUser().given_name;
     }
+  }
+
+  logout(){
+    this.authService.logout();
+    this.toastrService.info('Basariyla Cikis Yapildi');
+    window.location.href='';
   }
 }

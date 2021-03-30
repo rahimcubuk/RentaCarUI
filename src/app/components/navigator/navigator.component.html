@@ -60,12 +60,12 @@
         </div>
         <div *ngIf="isAuthFlag" >
           <div style="float: right;">
-            <button class="btn btn-fill btn-secondary" routerLink="logout" style="width: auto; height: 40px;">
+            <button class="btn btn-fill btn-secondary" (click)="logout()" style="width: auto; height: 40px;">
                 <img src="assets/img/logout.png" width="30"/>
             </button>
           </div>
           <div style="float: right;">
-            <span class="text-uppercase fs-6 input-group-text"> {{userName}} </span>
+            <button class="text-uppercase fs-6 input-group-text" routerLink="user/{{userName}}"> {{userName}} </button>
           </div>
         </div>
       </div>

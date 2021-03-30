@@ -7,11 +7,11 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
 import { CarComponent } from './components/car/car.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { LoginComponent } from './components/login/login.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RentCarComponent } from './components/rent-car/rent-car.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { LoginGuard } from './guards/login/login.guard';
 
 const routes: Routes = [
@@ -25,10 +25,10 @@ const routes: Routes = [
   { path: 'rent/car/:carId', component: RentCarComponent, canActivate:[LoginGuard] },
   { path: 'payment/:rental', component: PaymentComponent, canActivate:[LoginGuard] },
   { path: 'login', component: LoginComponent},
-  { path: 'logout', component: LogoutComponent,canActivate:[LoginGuard]},
   { path: 'register', component: RegisterComponent},
-  { path: 'rentals', component: RentalComponent,canActivate:[LoginGuard]},
-  { path: 'customers', component: CustomerComponent,canActivate:[LoginGuard]}
+  { path: 'rentals', component: RentalComponent, canActivate:[LoginGuard]},
+  { path: 'customers', component: CustomerComponent, canActivate:[LoginGuard]},
+  { path: 'user/:userName', component: UserDetailsComponent, canActivate:[LoginGuard]}
 ];
 
 @NgModule({

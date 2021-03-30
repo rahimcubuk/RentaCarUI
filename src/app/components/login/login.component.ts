@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginModel } from 'src/app/models/auth/loginModel';
 import { TokenModel } from 'src/app/models/auth/tokenModel';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import {
   FormGroup,
   FormControl,
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { LocalStorageService } from 'src/app/services/storage/local-storage.service';
+import { UserManagerService } from 'src/app/services/user/user-manager.service';
+import { HelperService } from 'src/app/services/helper/helper.service';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +22,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
     private toastrService: ToastrService,
-    private router: Router,
-    private storageService: LocalStorageService
+    private helper: HelperService,
+    private userManager: UserManagerService
   ) {}
 
   ngOnInit(): void {
@@ -43,23 +41,9 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       var data: LoginModel = Object.assign({}, this.loginForm.value);
-      this.authService.login(data).subscribe(
-        (response) => {
-          this.toastrService.info("Basariyla Giris Yapildi.");
-          this.storageService.Set(response.data.token);
-          console.log(this.authService.getUserName())
-          window.location.href='';
-        },
-        (response) => {
-          //console.log(response);
-          this.toastrService.error(
-            response.error,
-            'Bilgilerinizi kontrol edin.'
-          );
-        }
-      );
+      this.userManager.login(data, 1);
     } else {
-      console.log('hata');
+      this.toastrService.error('Hatali ya da eksik bilgi girdiniz.');
     }
   }
 }

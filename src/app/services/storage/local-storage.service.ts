@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
   constructor() {}
-  Get() {
+  Get():any {
     return localStorage.getItem('token');
   }
 

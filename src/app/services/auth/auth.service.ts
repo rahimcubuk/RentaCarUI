@@ -32,9 +32,7 @@ export class AuthService {
     this.storageService.Clear();
   }
 
-  register(
-    registerModel: RegisterModel
-  ): Observable<DataResponseModel<TokenModel>> {
+  register(registerModel: RegisterModel): Observable<DataResponseModel<TokenModel>> {
     let newUrl = this.apiUrl + 'register';
     return this.httpClient.post<DataResponseModel<TokenModel>>(
       newUrl,
@@ -42,10 +40,9 @@ export class AuthService {
     );
   }
 
-  getUserName() {
-    return this.jwtHelper.decodeToken(this.getToken()?.toString())[
-      'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
-    ];
+  getUser() {
+    const decodeToken = this.jwtHelper.decodeToken(this.getToken());
+    return decodeToken;
   }
 
   private getToken() {

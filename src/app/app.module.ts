@@ -25,7 +25,8 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
-import { LogoutComponent } from './components/logout/logout.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     CarUpdateComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
