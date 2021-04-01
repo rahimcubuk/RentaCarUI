@@ -1,5 +1,6 @@
 # RentaCarProject Kullanici Arayuzu
 Kodlama.io kamp gelisim projesidir. Gelistiren Rahim Cubuk.
+
 Uygulama gelistirme surecinde back-end tarafında cok katmanli mimari kullanılmıştır. Uygulama AOP, FluentValidatın, Autofac, WebAPI ile güclendirilmiş ve SOLID kurallarına bağlı kalınmıştır.
 
 ### Geliştirme Ortam Bilgileri
