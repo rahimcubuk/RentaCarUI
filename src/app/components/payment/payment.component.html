@@ -39,7 +39,20 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-2"></div>
+      <div class="col-4">
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#userCards" aria-expanded="false" aria-controls="collapseExample">
+            Kayitli Kartlarim
+          </button>
+        </p>
+        <div class="collapse" id="userCards">
+          <div class="card card-body">
+            <button *ngFor="let card of userCards" class="btn btn-info mb-1" (click)="setUserCard(card)"> 
+              {{card.cardNumber}} 
+            </button>
+          </div>
+        </div>
+      </div>
       <div class="col-8">
         <form [formGroup]="payForm">
         <div class="form-group mb-3">
@@ -91,8 +104,6 @@
           </div>
         </div>
         </form>
-      </div>
-      <div class="col-2"></div>
     </div>
   </div>
   <div class="card-footer">

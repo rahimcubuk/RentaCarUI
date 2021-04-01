@@ -27,6 +27,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { from } from 'rxjs';
+import { UserInfoComponent } from './components/user-details/user-info/user-info.component';
+import { UserCardinfoComponent } from './components/user-details/user-cardinfo/user-cardinfo.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { from } from 'rxjs';
     LoginComponent,
     RegisterComponent,
     UserDetailsComponent,
+    UserInfoComponent,
+    UserCardinfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,118 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<table *ngIf="dataLoaded != false" class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th colspan="6" style="text-align: center; background-color: rgba(110, 226, 226, 0.205)" > KARTLARIM
+      </th>
+    </tr>
+    <tr>
+      <th scope="col">Kart Sahibi</th>
+      <th scope="col">Kart Numarasi</th>
+      <th scope="col">Cvv</th>
+      <th scope="col">SK Tarihi</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let card of userCards">
+      <th scope="row">{{ card.nameOnTheCard }}</th>
+      <td>{{ card.cardNumber }}</td>
+      <td>{{ card.cardCvv }}</td>
+      <td>{{ card.expirationMonth }} / {{ card.expirationYear }}</td>
+      <td>
+        <button (click)="updateCard(card)" type="button" class="btn btn-warning" style="margin-right: 5px">
+          Duzenle
+        </button>
+        <button type="button" class="btn btn-danger">Sil</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<main class="text-center form-signin" *ngIf="editFlag">
+    <form [formGroup]="cardUpdateForm">
+      <h1 class="h3 mb-3 fw-normal">KART BILGILERINI GUNCELLE</h1>
+      <div class="form-floating mb-1">
+        <input type="text" class="form-control" formControlName="nameOnTheCard" id="nameOnTheCard" placeholder="Kart Sahibi">
+        <label for="floatingInput">Kart Sahibi</label>
+      </div>
+      <div class="form-floating mb-1">
+        <input type="text" class="form-control" formControlName="cardNumber" id="cardNumber" placeholder="Kart Numarasi">
+        <label for="floatingInput">Kart Numarasi</label>
+      </div>
+      <div class="form-floating mb-1">
+        <input type="text" class="form-control" formControlName="cardCvv" id="cardCvv" placeholder="CVV">
+        <label for="floatingInput">CVV</label>
+      </div>
+      <div class="row mb-1">
+        <div class="form-floating col-6">
+            <input type="text" class="form-control" formControlName="expirationMonth" id="expirationMonth" placeholder="SK Tarihi">
+            <label for="floatingInput">SK Tarihi/Ay</label>
+        </div>
+        <div class="form-floating col-6">
+          <input type="text" class="form-control" formControlName="expirationYear" id="expirationYear" placeholder="SK Tarihi">
+          <label for="floatingInput">SK Tarihi/Yil</label>
+        </div>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="save()"> KAYDET </button>
+    </form>
+</main>
+
+<!-- 
+<form [formGroup]="payForm">
+    <div class="form-group mb-3">
+      <div class="row input-group flex-nowrap">
+        <span class="input-group-text col-4" id="cardName">Adi Soyadi</span>
+        <input id="cardName" class="form-control col-8" type="text" formControlName="nameOnTheCard" placeholder="Kart Uzerindeki Ad Soyad" />
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <div class="row input-group flex-nowrap">
+        <span class="input-group-text col-4" id="cardNumber">Kart Numarasi</span>
+        <input id="cardNumber" class="form-control col-8" type="text" formControlName="cardNumber" placeholder="Kart Numarasi" />
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <div class="row input-group flex-nowrap">
+        <span class="input-group-text col-4" id="expirationDate">Son Kullanma Tarihi</span>
+        <select class="form-select col-1" formControlName="expirationMonth" type="number" id="expirationMonth" aria-placeholder="MM">
+          <option class="form-control" type="number" value="1"> Ocak </option>
+          <option class="form-control" type="number" value="2"> Subat </option>
+          <option class="form-control" type="number" value="3"> Mart </option>
+          <option class="form-control" type="number" value="4"> Nisan </option>
+          <option class="form-control" type="number" value="5"> Mayis </option>
+          <option class="form-control" type="number" value="6"> Haziran </option>
+          <option class="form-control" type="number" value="7"> Temmuz </option>
+          <option class="form-control" type="number" value="8"> Agustos </option>
+          <option class="form-control" type="number" value="9"> Eylul </option>
+          <option class="form-control" type="number" value="10"> Ekim </option>
+          <option class="form-control" type="number" value="11"> Kasim </option>
+          <option class="form-control" type="number" value="12"> Aralik </option>
+        </select>
+        <select class="form-select col-1" formControlName="expirationYear" type="number" id="expirationYear" aria-placeholder="YYYY">
+          <option class="form-control" type="number" value="2021"> 2021 </option>
+          <option class="form-control" type="number" value="2022"> 2022 </option>
+          <option class="form-control" type="number" value="2023"> 2023 </option>
+          <option class="form-control" type="number" value="2024"> 2024 </option>
+          <option class="form-control" type="number" value="2025"> 2025 </option>
+          <option class="form-control" type="number" value="2026"> 2026 </option>
+          <option class="form-control" type="number" value="2027"> 2027 </option>
+          <option class="form-control" type="number" value="2028"> 2028 </option>
+          <option class="form-control" type="number" value="2029"> 2029 </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <div class="row input-group flex-nowrap">
+        <span class="input-group-text col-4" id="cardCvv">Guvenlik Kodu</span>
+        <input id="cardCvv" class="form-control col-3" type="text" formControlName="cardCvv" placeholder="Guvenlik Kodu" />
+      </div>
+    </div>
+    </form> -->

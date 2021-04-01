@@ -13,22 +13,9 @@
           <div class="row mb-2">
             <div class="col-6">
               <div class="row input-group flex-nowrap">
-                <span class="input-group-text col-3" id="returnDate"
-                  >Musteri</span
-                >
-                <select
-                  class="form-group form-select col-9"
-                  formControlName="customerId"
-                  type="number"
-                  id="customerId"
-                  placeholder="Musteriler"
-                >
-                  <option
-                    class="form-control"
-                    type="number"
-                    [value]="customer.customerId"
-                    *ngFor="let customer of customers"
-                  >
+                <span class="input-group-text col-3" id="returnDate">Musteri</span >
+                <select class="form-group form-select col-9" formControlName="customerId" type="number" id="customerId" placeholder="Musteriler" >
+                  <option class="form-control" type="number" [value]="customer.userId" *ngFor="let customer of customers" >
                     {{ customer.firstName }} {{ customer.lastName }}
                   </option>
                 </select>

@@ -19,6 +19,11 @@ export class CustomerService {
     return this.httpClient.get<ListResponseModel<Customer>>(newUrl);
   }
 
+  getUsers(): Observable<ListResponseModel<User>> {
+    let newUrl = this.apiKey + 'user/list';
+    return this.httpClient.get<ListResponseModel<User>>(newUrl);
+  }
+
   getCustomerById(id: number): Observable<DataResponseModel<Customer>> {
     let newUrl = this.apiKey + 'customer/list/' + id;
     return this.httpClient.get<DataResponseModel<Customer>>(newUrl);

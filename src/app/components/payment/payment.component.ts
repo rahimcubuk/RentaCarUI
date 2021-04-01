@@ -6,6 +6,9 @@ import { CarDetails } from 'src/app/models/car/carDetails';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RentalService } from 'src/app/services/rental/rental.service';
 import { Router } from '@angular/router';
+import { UserCardDetails } from 'src/app/models/creditCard/userCardDetails';
+import { CardService } from 'src/app/services/creditCard/card.service';
+import { User } from 'src/app/models/customer/user';
 
 @Component({
   selector: 'app-payment',
@@ -15,6 +18,7 @@ import { Router } from '@angular/router';
 export class PaymentComponent implements OnInit {
   @Input() rental: Rental;
   @Input() carDetail: CarDetails;
+  userCards: UserCardDetails[] = [];
   totalPrice: number = 0;
   payForm: FormGroup;
 
@@ -23,18 +27,14 @@ export class PaymentComponent implements OnInit {
     private toastrService: ToastrService,
     private paymentService: PaymentService,
     private rentalService: RentalService,
+    private cardService: CardService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    // this.activatedRoute.params.subscribe((params) => {
-    //   if (params['rental']) {
-    //     this.rental =params['rental'];// JSON.parse(params['rental']);
-    //     this.getCarDetails();
-    //   }
-    // });
     this.createPayForm();
     this.getRentSummary();
+    this.getUserCards();
   }
 
   getRentSummary() {
@@ -57,6 +57,27 @@ export class PaymentComponent implements OnInit {
       expirationMonth: ['', Validators.required],
       expirationYear: ['', Validators.required],
     });
+  }
+
+  createPayFormWithUserCard(card:UserCardDetails) {
+    this.payForm = this.formBuilder.group({
+      nameOnTheCard: [card.nameOnTheCard, Validators.required],
+      cardNumber: [card.cardNumber, Validators.required],
+      cardCvv: [card.cardCvv, Validators.required],
+      expirationMonth: [card.expirationMonth, Validators.required],
+      expirationYear: [card.expirationYear, Validators.required],
+    });
+  }
+
+  getUserCards() {
+    this.cardService.getUserCards(this.rental.customerId).subscribe((response) => {
+      this.userCards = response.data;
+      console.log(this.userCards);
+    });
+  }
+
+  setUserCard(card:UserCardDetails){
+    this.createPayFormWithUserCard(card);
   }
 
   pay() {

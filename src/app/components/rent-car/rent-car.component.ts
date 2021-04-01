@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetails } from 'src/app/models/car/carDetails';
 import { Customer } from 'src/app/models/customer/customer';
+import { User } from 'src/app/models/customer/user';
 import { Rental } from 'src/app/models/rental/rental';
 import { CarService } from 'src/app/services/car/car.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
@@ -17,7 +18,7 @@ import { RentalService } from 'src/app/services/rental/rental.service';
 export class RentCarComponent implements OnInit {
   car: CarDetails;
   rental: Rental;
-  customers: Customer[] = [];
+  customers: User[] = [];
   rentDate: Date;
   returnDate: Date;
   rentForm: FormGroup;
@@ -27,10 +28,8 @@ export class RentCarComponent implements OnInit {
     private activedRoute: ActivatedRoute,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder,
-    private router: Router,
     private carService: CarService,
     private customerService: CustomerService,
-    private rentalService: RentalService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +46,7 @@ export class RentCarComponent implements OnInit {
   }
 
   getCustomers() {
-    this.customerService.getCustomers().subscribe((c) => {
+    this.customerService.getUsers().subscribe((c) => {
       this.customers = c.data;
     });
   }
