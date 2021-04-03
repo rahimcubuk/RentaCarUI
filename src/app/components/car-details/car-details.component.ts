@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { CarDetails } from 'src/app/models/car/carDetails';
 import { CarImage } from 'src/app/models/car/carImage';
 import { Rental } from 'src/app/models/rental/rental';
 import { CarService } from 'src/app/services/car/car.service';
 import { CarImageService } from 'src/app/services/carImage/car-image.service';
 import { RentalService } from 'src/app/services/rental/rental.service';
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { HelperService } from 'src/app/services/helper/helper.service';
 @Component({
   selector: 'app-car-details',
   templateUrl: './car-details.component.html',
@@ -30,7 +24,7 @@ export class CarDetailsComponent implements OnInit {
     private carService: CarService,
     private imageService: CarImageService,
     private rentalService: RentalService,
-    private toastrService: ToastrService
+    private helper: HelperService
   ) {}
 
   ngOnInit(): void {
@@ -57,15 +51,7 @@ export class CarDetailsComponent implements OnInit {
   isRent(carId: number) {
     this.rentalService.getRentalByCar(carId).subscribe(
       (response) => {
-        // this.rentFlag = response.data.returnDate == null ? true : false;
-        if (response.data.returnDate != null) {
-          let today = Date();
-          var date1 = new Date(response.data.returnDate.toString());
-          var date2 = new Date(today.toString());
-          var difference = date2.getTime() - date1.getTime();
-          console.log(date1 + ' ' + response.data.returnDate);
-          this.rentFlag = difference < 0 ? true : false;
-        } else this.rentFlag = true;
+        this.rentFlag = this.helper.checkRent(response);
       },
       (response) => {
         this.rentFlag = false;
